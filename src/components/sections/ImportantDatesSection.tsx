@@ -141,7 +141,7 @@ export default function ImportantDatesSection() {
           />
 
           <CountdownCard
-            title="Her Birthday – April 26 📸"
+            title="Your Birthday – April 26 📸"
             image="/Her2.jpeg"
             data={herCountdown}
           />
