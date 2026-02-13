@@ -76,24 +76,24 @@ export default function ImportantDatesSection() {
     data: Countdown
   }) => (
     <motion.div
-      whileHover={{ scale: 1.03 }}
-      className="p-6 rounded-2xl bg-white shadow-lg space-y-4"
+      whileHover={{ scale: 1.02 }}
+      className="p-5 rounded-2xl bg-white shadow-md space-y-3"
     >
       <div className="flex justify-center">
         <Image
           src={image}
           alt={title}
-          width={120}
-          height={120}
+          width={108}
+          height={108}
           className="rounded-full object-cover"
         />
       </div>
 
-      <h3 className="text-xl font-semibold text-rose-900">
+      <h3 className="text-lg font-semibold text-rose-900">
         {title}
       </h3>
 
-      <div className="grid grid-cols-4 gap-3 text-center mt-4">
+      <div className="grid grid-cols-4 gap-2.5 text-center mt-3">
         {[
           { label: "Days", value: data.days },
           { label: "Hours", value: data.hours },
@@ -102,12 +102,12 @@ export default function ImportantDatesSection() {
         ].map((item) => (
           <div
             key={item.label}
-            className="bg-rose-100 rounded-xl p-3"
+            className="bg-rose-100 rounded-xl p-2.5"
           >
-            <p className="text-lg font-bold text-rose-900">
+            <p className="text-base font-bold text-rose-900">
               {item.value}
             </p>
-            <p className="text-xs text-rose-700">
+            <p className="text-[11px] text-rose-700">
               {item.label}
             </p>
           </div>
@@ -119,20 +119,20 @@ export default function ImportantDatesSection() {
   return (
     <section
       id="important-dates"
-      className="min-h-screen flex items-center justify-center px-6 md:px-12"
+      className="min-h-screen flex items-center justify-center px-6 md:px-10"
     >
-      <div className="max-w-3xl mx-auto text-center space-y-10">
+      <div className="max-w-2xl mx-auto text-center space-y-8">
 
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-3xl md:text-4xl font-bold text-rose-900"
+          className="text-2xl md:text-3xl font-bold text-rose-900"
         >
           Our Next Important Dates 🎂
         </motion.h2>
 
-        <div className="space-y-8">
+        <div className="space-y-6">
 
           <CountdownCard
             title="Your BigBoy Birthday – March 9 🎸"
@@ -152,7 +152,7 @@ export default function ImportantDatesSection() {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ delay: 0.4 }}
-          className="text-rose-800"
+          className="text-sm text-rose-800"
         >
           More memories loading...
         </motion.p>

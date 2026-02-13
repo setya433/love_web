@@ -13,45 +13,49 @@ export default function QuestionSection() {
     setNoClicked(true)
   }
 
+  const closePopup = () => {
+    setShowPopup(false)
+  }
+
   return (
-    <section id="question" className="min-h-screen flex items-center justify-center px-6 md:px-12">
+    <section
+      id="question"
+      className="min-h-screen flex items-center justify-center px-6 md:px-12"
+    >
       <div className="max-w-3xl mx-auto text-center">
 
         {/* GIF */}
-          <motion.img
-            src="https://i.pinimg.com/736x/99/04/06/9904061a7768c67ae2df86b10ad621de.jpg"
-            alt="Dudu Hug"
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.6 }}
-            className="mx-auto mb-6 w-48 md:w-64 rounded-2xl"
-          />
-
+        <motion.img
+          src="https://i.pinimg.com/736x/99/04/06/9904061a7768c67ae2df86b10ad621de.jpg"
+          alt="Dudu Hug"
+          initial={{ opacity: 0, scale: 0.85 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.6 }}
+          className="mx-auto mb-6 w-44 md:w-56 rounded-2xl"
+        />
 
         {/* Question */}
         <motion.h2
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-2xl md:text-4xl font-semibold text-rose-900"
+          className="text-xl md:text-3xl font-semibold text-rose-900"
         >
           Will you be my Forever and accept unlimited hugs from me?
         </motion.h2>
 
         {/* Buttons */}
         <div className="mt-10 flex justify-center gap-6">
-        <Link href="/#love-letter">
-          {/* YES BUTTON */}
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.95 }}
-            className="px-8 py-3 rounded-full bg-rose-500 text-white font-medium shadow-lg hover:bg-rose-600 transition"
-          >
-            YES 💖
-          </motion.button>
-        </Link>
+          <Link href="/#love-letter">
+            <motion.button
+              whileHover={{ scale: 1.08 }}
+              whileTap={{ scale: 0.95 }}
+              className="px-8 py-3 rounded-full bg-rose-500 text-white font-medium shadow-lg hover:bg-rose-600 transition"
+            >
+              YES 💖
+            </motion.button>
+          </Link>
 
-          {/* NO BUTTON */}
           <AnimatePresence>
             {!noClicked && (
               <motion.button
@@ -65,30 +69,63 @@ export default function QuestionSection() {
               </motion.button>
             )}
           </AnimatePresence>
-
         </div>
-
-        {/* Popup */}
-        <AnimatePresence>
-          {showPopup && (
-            <motion.div
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              exit={{ opacity: 0 }}
-              transition={{ duration: 0.3 }}
-              className="mt-8 p-6 rounded-2xl bg-white shadow-xl text-rose-900"
-            >
-              <p className="text-lg font-medium">
-                "NO" option not available for this user.
-              </p>
-              <p className="mt-2 text-sm text-rose-700">
-                Please try choosing YES instead.
-              </p>
-            </motion.div>
-          )}
-        </AnimatePresence>
-
       </div>
+
+      {/* POPUP MODAL */}
+      <AnimatePresence>
+        {showPopup && (
+          <>
+            {/* Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closePopup}
+              className="fixed inset-0 bg-black/40 backdrop-blur-sm z-40"
+            />
+
+            {/* Modal Content */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.7, y: 40 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.7 }}
+              transition={{ duration: 0.3 }}
+              className="fixed inset-0 flex items-center justify-center z-50 px-4"
+            >
+              <div
+                onClick={(e) => e.stopPropagation()}
+                className="relative bg-white rounded-2xl shadow-2xl p-8 max-w-sm w-full text-center"
+              >
+                {/* Close Button */}
+                <button
+                  onClick={closePopup}
+                  className="absolute top-3 right-3 text-gray-400 hover:text-gray-600 text-lg"
+                >
+                  ✕
+                </button>
+
+                <p className="text-lg font-semibold text-rose-900">
+                  "NO" option not available 😌
+                </p>
+
+                <p className="mt-3 text-sm text-rose-700">
+                  This user only accepts love and unlimited hugs.
+                </p>
+
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  onClick={closePopup}
+                  className="mt-6 px-6 py-2.5 rounded-full bg-rose-500 text-white text-sm font-medium shadow-md hover:bg-rose-600 transition"
+                >
+                  Okay… I choose YES 💖
+                </motion.button>
+              </div>
+            </motion.div>
+          </>
+        )}
+      </AnimatePresence>
     </section>
   )
 }
